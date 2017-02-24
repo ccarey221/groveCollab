@@ -4,6 +4,7 @@
   "description": "Grove Coding Challenge",
   "main": "index.js",
   "scripts": {
+    "start": "node server/server.js",
     "test": "mocha spec"
   },
   "author": "Conor Carey",
@@ -12,5 +13,12 @@
     "chai": "^3.5.0",
     "express": "^4.14.1",
     "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "es6-promise": "^4.0.5",
+    "fs": "0.0.1-security",
+    "isomorphic-fetch": "^2.2.1",
+    "require": "^2.4.20"
   }
 }
