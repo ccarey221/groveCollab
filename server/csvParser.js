@@ -3,16 +3,14 @@ var parse = require('csv-parse');
 var async = require('async');
 var distanceCalculator = require('./distance.js');
 
-var inputFile='./data/store-locations.csv';
+var inputFile= __dirname + '/data/store-locations.csv';
 
-function distanceChecker(locationLat, locationLong) {
-  // because we know the format of the data
-  // we can use a magic number to determine
-  // which column the city is in, which is 3
-  let closestStore;
+module.exports = function distanceChecker(locationLat, locationLong) {
+  var closestStore;
   let headerRowPass = false;
 
-  fs.createReadStream('./data/store-locations.csv')
+  var p = new Promise(function(resolve, reject) {
+    fs.createReadStream(inputFile)
       .pipe(parse({delimiter: ','}))
       .on('data', function(csvrow) {
         if (headerRowPass) {
@@ -27,10 +25,9 @@ function distanceChecker(locationLat, locationLong) {
         headerRowPass = true;
       })
       .on('end',function() {
-        //do something wiht csvData
-        console.log(closestStore);
-        console.log('done!');
+        resolve(closestStore);
       });
-    }
-
-    distanceChecker(37.75906800000001, -122.4290225);
+    })
+  p.then(store => store);
+  return p;
+  }

@@ -1,5 +1,6 @@
 let locationInfo = document.getElementById('userInput');
 let button = document.getElementById('submit');
+let closestStoreDiv = document.getElementById('closestStore')
 
 button.onclick = () => {
   let locationParam = locationInfo.value.split(" ").join('+');
@@ -9,7 +10,6 @@ button.onclick = () => {
     return response.json();
     }
   ).then(body => {
-    console.log(body.results[0].geometry.location);
     fetch('/nearestStore', {
       headers: {
         'Accept': 'application/json',
@@ -17,6 +17,9 @@ button.onclick = () => {
       },
       method: "POST",
       body: JSON.stringify(body.results[0].geometry.location)
-    })
-  }).catch(err => console.log('error in API call'););
+    }).then(response => {
+      return response.json();
+    }
+  ).then(returnedStuff => console.log(returnedStuff))
+  }).catch(err => console.log('error in API call'));
 }

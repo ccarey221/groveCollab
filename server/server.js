@@ -2,9 +2,10 @@ var express = require('express');
 var app = express();
 const path = require('path');
 var bodyParser = require('body-parser');
-var calculateDistance = require('./distance.js');
+var storeFinder = require('./csvParser.js');
 
 app.use(express.static('client'));
+app.use(express.static('data'));
 
 app.use(bodyParser.json());
 
@@ -13,8 +14,15 @@ app.get('/', function(req, res) {
 });
 
 app.post('/nearestStore', (req,res) => {
-  console.log(req.body);
-  res.send(req.body);
+  console.log(storeFinder(req.body.lat, req.body.lng), 'THIS IS IT');
+  res.writeHead(200, {"Content-Type": "application/json"});
+  storeFinder(req.body.lat, req.body.lng).then(function(data) {
+    res.end(JSON.stringify({store: data}))
+  });
+  // var json = JSON.stringify({
+  //   store: storeFinder(req.body.lat, req.body.lng)
+  // });
+  // res.end(json);
 });
 
 app.listen(3000, function() {
