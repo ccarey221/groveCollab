@@ -15,7 +15,9 @@
     "mocha": "^3.2.0"
   },
   "dependencies": {
+    "asynch": "^0.5.2",
     "body-parser": "^1.16.1",
+    "csv-parse": "^1.2.0",
     "es6-promise": "^4.0.5",
     "fs": "0.0.1-security",
     "isomorphic-fetch": "^2.2.1",
