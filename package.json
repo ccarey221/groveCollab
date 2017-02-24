@@ -1,0 +1,16 @@
+{
+  "name": "grove",
+  "version": "1.0.0",
+  "description": "Grove Coding Challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha spec"
+  },
+  "author": "Conor Carey",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "express": "^4.14.1",
+    "mocha": "^3.2.0"
+  }
+}
