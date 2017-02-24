@@ -4,21 +4,13 @@ var test = require('mocha').test;
 var pre = require('mocha').before;
 var assertions = require('mocha').it;
 var assert = require('chai').assert;
+var distance = require('./server/distance.js');
 
-suite('boolean', function() {
-  describe('truthy tests', function() {
-    test('should equal true', function() {
-      return 1 === 1;
-  })
-  });test('should equal true', function() {
-    return 1 === 1;
-  });test('should equal true', function() {
-    return 1 === 1;
-  });test('should equal true', function() {
-    return 1 === 1;
-  });test('should equal true', function() {
-    return 1 === 1;
-  });test('should equal true', function() {
-    return 1 === 1;
+suite('distance', function() {
+  describe('is the correct distance returned', function() {
+    test('distance calculated is equal to 3rd party calculation', function() {
+      // have to floor it due to significant digits
+      assert(Math.floor(distance(39.4597162, 33.5039854, -76.3166657, -81.7117482)) === Math.floor(818.48));
+    })
   });
 });
